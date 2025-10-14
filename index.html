@@ -1,13 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Water Drop Game</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Welcome to the Charity Water Game Prototype</h1>
-    <script src="script.js"></script>
+  <!-- Cloud Header -->
+  <header class="cloud-header">
+    <div class="header-boxes">
+      <div class="box small">💧 <span id="score">0</span></div>
+      <div class="box large">💧 Water Drop</div>
+      <div class="box small">⏳ <span id="timer">60</span></div>
+    </div>
+  </header>
+
+  <!-- Main Play Area -->
+  <main class="main-area">
+    <button id="startBtn" class="start-btn">Click To Play</button>
+    <div id="bucket" class="bucket">🪣</div>
+    <button id="resetBtn" class="reset-btn hidden">Reset</button>
+  </main>
+
+  <!-- Earth Footer -->
+  <footer class="earth-footer">
+    <div class="earth-inner">
+      <div id="goodjob" class="goodjob hidden">Good job!</div>
+    </div>
+  </footer>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="game-over hidden">
+    <h2>Game Over</h2>
+    <button id="restartBtn" class="restart-btn">Restart</button>
+    <h3 class="donation-text">Go Donate to Charity: water</h3>
+    <h3 class="donation-text">www.charitywater.org</h3>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

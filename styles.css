@@ -1,15 +1,238 @@
-/* Charity: water Brand Colors
+/* Charity: water Brand Colors */
+:root {
+  --yellow: #FFC907;
+  --blue: #2E9DF7;
+  --light-blue: #8BD1CB;
+  --green: #4FCB53;
+  --orange: #FF902A;
+  --red: #F5402C;
+  --dark-green: #159A48;
+  --pink: #F16061;
+}
 
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
+/* Reset and Fullscreen Setup */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+  font-family: Inter, system-ui, Segoe UI, Roboto, sans-serif;
+  background: var(--blue); /* fallback for sky area */
+  display: flex;
+  flex-direction: column;
+}
 
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
+/* Cloud Header */
+.cloud-header {
+  position: relative;
+  width: 100%;
+  height: 12vh;
+  background: white;
+} 
 
-*/
+/* Boxes inside cloud */
+.header-boxes {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+}
+.box {
+  background: #ffffff;
+  border-radius: 2vw;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--blue);
+  border: 2px solid var(--light-blue);
+  transition: all 0.2s ease;
+}
+.box.small { width: 6vw; height: 6vh; font-size: 1.5vw; }
+.box.large { flex: 1; margin: 0 2vw; height: 6vh; font-size: 1.5vw; }
+
+
+
+/* Sky Area */
+.main-area {
+  flex: 1;
+  width: 100%;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Start Button */
+.start-btn {
+  background: white;
+  border: 2px solid var(--red);
+  border-radius: 30px;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  color: #F5402C;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.start-btn:hover {
+  background: var(--red);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.start-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* Earth Footer */
+.earth-footer {
+  position: relative;
+  width: 100%;
+  height: 10vh; /* bottom section same as top */
+  background: var(--dark-green);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.earth-inner {
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 1vw;
+}
+
+/* Good Job popup */
+.goodjob {
+  background: var(--green);
+  color: white;
+  font-size: 1vw;
+  font-weight: bold;
+  padding: 1vw 2vh;
+  border-radius: 4vw;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.hidden {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+}
+.goodjob.pop {
+  opacity: 1;
+}
+
+
+
+
+/* Water Droplets */
+.droplet {
+  position: absolute;
+  width: 2vw;
+  height: 2vh;
+  text-align: center;
+  font-size: 2vw;
+  line-height: 2vw;
+}
+
+
+/* ---------------- */
+
+/* Bucket styling */
+.bucket {
+  position: absolute;
+  bottom: 21vh;
+  width: 4vw;
+  height: 4vh;
+  font-size: 4vw;
+  text-align: center;
+  pointer-events: none;
+  transition: transform 0.05s linear;
+}
+
+/* Game over overlay */
+.game-over {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3vw;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
+  padding: 6vh 10vw;
+  border-radius: 4vw;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.game-over.hidden {
+  display: none;
+}
+
+.donation-text {
+  position: relative;
+  color: var(--pink);
+  font-size: 1vw;
+}
+
+.restart-btn {
+  position: relative;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  width: 15vw;
+  height: 6vh;
+  text-align: center;
+  font-size: 1vw;
+  padding: 10px 25px;
+  background-color: var(--dark-green);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.restart-btn:hover {
+  background-color: var(--dark-green);
+  transform: scale(1.20);
+}
+
+/* Reset button (bottom right corner, visible only during play) */
+.reset-btn {
+  position: fixed;
+  bottom: 2vh;
+  right: 1vw;
+  background-color: var(--yellow);
+  color: black;
+  border: none;
+  border-radius: 1vw;
+  font-weight: bold;
+  font-size: 1vw;
+  padding: 1vw 10vh;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.reset-btn:hover {
+  transform: scale(1.1);
+}
+
+.reset-btn.hidden {
+  display: none;
+}
