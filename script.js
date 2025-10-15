@@ -98,6 +98,12 @@ function createDroplet() {
       } else {
         endGame();
       }
+
+      if (score === 30) {
+        celebrateWin();
+        endGame();
+      }
+      
       drop.remove();
       clearInterval(checkCollision);
     }
@@ -216,4 +222,32 @@ function showGoodJob(duration = 800) {
     goodjob.classList.remove('pop');
     setTimeout(() => goodjob.classList.add('hidden'), 250);
   }, duration);
+}
+
+// Levelup
+function celebrateWin() {
+  // Launch confetti bursts for a short time
+  const duration = 2000; // 2 seconds
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 5,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: ['#FFC907', '#4FCB53', '#2E9DF7', '#FF902A', '#F5402C']
+    });
+    confetti({
+      particleCount: 5,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: ['#FFC907', '#4FCB53', '#2E9DF7', '#FF902A', '#F5402C']
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 }
